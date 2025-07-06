@@ -61,7 +61,8 @@ class NGio
 			/* They are NOT playing on newgrounds.com, no session id was found. We must start one manually, if we want to.
 			 * Note: This will cause a new browser window to pop up where they can log in to newgrounds
 			 */
-			NG.core.requestLogin(outcome -> {
+			NG.core.requestLogin(outcome ->
+			{
 				onNGLogin();
 			});
 		}
@@ -80,7 +81,10 @@ class NGio
 		});
 
 		// Load Scoreboards hten call onNGBoardsFetch()
-		// NG.core.requestScoreBoards(onNGBoardsFetch);
+		NG.core.scoreBoards.loadList(outcome ->
+		{
+			onNGBoardsFetch();
+		});
 
 		ngDataLoaded.dispatch();
 	}
@@ -104,25 +108,24 @@ class NGio
 	// --- SCOREBOARDS
 	function onNGBoardsFetch():Void
 	{
-		/*
-			// Reading medal info
-			for (id in NG.core.scoreBoards.keys())
-			{
-				var board = NG.core.scoreBoards.get(id);
-				trace('loaded scoreboard id:$id, name:${board.name}');
-			}
-		 */
-		// var board = NG.core.scoreBoards.get(8004);// ID found in NG project view
+		// Reading medal info
+		for (id in NG.core.scoreBoards.keys())
+		{
+			var board = NG.core.scoreBoards.get(id);
+			trace('loaded scoreboard id:$id, name:${board.name}');
+		}
+		var board = NG.core.scoreBoards.get(15064);// ID found in NG project view
 
 		// Posting a score thats OVER 9000!
 		// board.postScore(FlxG.random.int(0, 1000));
+		// KAKAROT YOUR A FRAUD!
 
 		// --- To view the scores you first need to select the range of scores you want to see ---
 
 		// add an update listener so we know when we get the new scores
-		// board.onUpdate.add(onNGScoresFetch);
+		board.onUpdate.add(onNGScoresFetch);
 		trace("shoulda got score by NOW!");
-		// board.requestScores(20);// get the best 10 scores ever logged
+		board.requestScores();// get the best 10 scores ever logged
 		// more info on scores --- http://www.newgrounds.io/help/components/#scoreboard-getscores
 	}
 
@@ -136,10 +139,10 @@ class NGio
 
 				if (song == board.name)
 				{
-					board.postScore(score, "Uhh meow?");
+					board.postScore(score, NG.core.user.name);
 				}
 
-				// trace('loaded scoreboard id:$id, name:${board.name}');
+				trace('loaded scoreboard id:$id, name:${board.name}');
 			}
 		}
 	}
@@ -149,18 +152,16 @@ class NGio
 		scoreboardsLoaded = true;
 
 		ngScoresLoaded.dispatch();
-		/* 
 			for (score in NG.core.scoreBoards.get(8737).scores)
 			{
-				trace('score loaded user:${score.user.name}, score:${score.formatted_value}');
+				trace('score loaded user:${score.user.name}, score:${score.formattedValue}');
 
 			}
-		 */
 
-		// var board = NG.core.scoreBoards.get(8004);// ID found in NG project view
+		// var board = NG.core.scoreBoards.get(15064);// ID found in NG project view
 		// board.postScore(HighScore.score);
 
-		// NGio.scoreboardArray = NG.core.scoreBoards.get(8004).scores;
+		NGio.scoreboardArray = NG.core.scoreBoards.get(15064).scores;
 	}
 
 	inline static public function logEvent(event:String)
