@@ -4,9 +4,12 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxSignal;
+import medals.MedalChecker;
 
 class PlayState extends FlxState
 {
+	public static var instance:PlayState;
+
 	public var Score:Int = 0;
 
 	var scoreText:FlxText;
@@ -22,9 +25,12 @@ class PlayState extends FlxState
 
 		scoreText.text = 'Score: $Score';
 		scoreText.screenCenter(X);
+		
 		FlxTween.cancelTweensOf(otc);
 		otc.scale.set(0.9, 0.9);
 		FlxTween.tween(otc, {'scale.x': 1, 'scale.y': 1}, 0.25);
+
+		MedalChecker.checkForMedals();
 	}
 
 	override public function create():Void
@@ -40,6 +46,7 @@ class PlayState extends FlxState
 		add(scoreText);
 
 		OtcClicked.add(OtcClickedEvent);
+		instance = this;
 	}
 
 	override public function update(elapsed:Float):Void
