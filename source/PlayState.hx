@@ -1,5 +1,6 @@
 package;
 
+import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
@@ -11,6 +12,7 @@ class PlayState extends FlxState
 	public static var instance:PlayState;
 
 	public var Score:Int = 0;
+	public var medals:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
 
 	var scoreText:FlxText;
 

@@ -8,13 +8,18 @@ import flixel.util.FlxTimer;
 
 class MedalChecker
 {
+	static var medalIDS:Map<String, Int> = ['cancer' => 85433, 'one hundp' => 85432];
+	static var medalNames:Map<String, String> = ['cancer' => 'Cancer', 'one hundo' => 'One Hundo'];
+
 	public static function checkForMedals()
 	{
 		switch (PlayState.instance.Score)
 		{
-			// 2 is just for testing
-			case 2:
-				unlockMedal(OneHundoName, OneHundoID);
+			case 69:
+				unlockMedal('cancer');
+
+			case 100:
+				unlockMedal('one hundo');
 
 			default:
 				// Prevent this from spamming the console
@@ -22,9 +27,14 @@ class MedalChecker
 		}
 	}
 
-	public static function unlockMedal(medalName:MedalNames, medalID:MedalIDs)
+	public static function unlockMedal(medalKey:String)
 	{
-		// Newgrounds API will unlock the medal here
+		var medalName:String = medalNames.get(medalKey);
+		var medalID:Int = medalIDS.get(medalKey);
+
+		#if newgrounds
+		Newgrounds.unlockMedal(medalID);
+		#end
 
 		var medalText:FlxText = new FlxText();
 		medalText.text = 'Unlocked medal "$medalName"';
@@ -33,7 +43,9 @@ class MedalChecker
 		medalText.screenCenter(X);
 		medalText.y = FlxG.height - medalText.height - 32;
 
-		PlayState.instance.add(medalText);
+		if (PlayState.instance.medals.length > 0)
+			medalText.y -= 32 * PlayState.instance.medals.length;
+		PlayState.instance.medals.add(medalText);
 
 		FlxTween.tween(medalText, {alpha: 1}, 0.5, {
 			onStart: tween ->
@@ -59,10 +71,6 @@ class MedalChecker
 
 enum abstract MedalNames(String)
 {
-	var OneHundoName = 'OneHundo';
-}
-
-enum abstract MedalIDs(Int)
-{
-	var OneHundoID = 0;
+	var CancerName = 'Cancer';
+	var OneHundoName = 'One Hundo';
 }

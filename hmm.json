@@ -9,6 +9,11 @@
       "name": "hxcpp",
       "type": "haxelib",
       "version": null
+    },
+    {
+      "name": "newgrounds",
+      "type": "haxelib",
+      "version": null
     }
   ]
 }

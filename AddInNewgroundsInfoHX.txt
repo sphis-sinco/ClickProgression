@@ -1,0 +1,10 @@
+add in a file with the name "NewgroundsInfo.hx" and copy this into it:
+
+package;
+
+class NewgroundsInfo {
+        public static var APP_ID:String = '';
+        public static var SESSION_ID:String = '';
+        public static var BACKUP_SESSION_ID:String = '';
+        public static var ENCRYPTION_KEY:String = '';
+}
