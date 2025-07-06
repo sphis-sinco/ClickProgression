@@ -31,18 +31,30 @@ class MedalChecker
 	{
 		var medalName:String = medalNames.get(medalKey);
 		var medalID:Int = medalIDS.get(medalKey);
+		trace('Unlocked medal: $medalName${#if NEWGROUNDS ' / $medalID' #else '' #end}');
 
+		#if NEWGROUNDS
 		NGio.unlockMedal(medalID);
-		
+		#end
+
 		var medalText:FlxText = new FlxText();
 		medalText.text = 'Unlocked medal "$medalName"';
+
+		#if NEWGROUNDS
+		var medal = io.newgrounds.NG.core.medals.getById(medalID);
+		medalText.text = 'Unlocked medal "${medal.name}" (${medal.difficultyName}) for ${medal.value} points';
+		#end
+
 		medalText.size = 32;
-		medalText.alpha = 0;
+		medalText.alpha = 1;
 		medalText.screenCenter(X);
 		medalText.y = FlxG.height - medalText.height - 32;
 
-		if (PlayState.instance.medals.length > 0)
-			medalText.y -= 32 * PlayState.instance.medals.length;
+		medalText.y = FlxG.height - medalText.height - 32;
+		if (PlayState.instance.medals.members.length > 0)
+		{
+			medalText.y -= 32 * PlayState.instance.medals.members.length;
+		}
 		PlayState.instance.medals.add(medalText);
 
 		FlxTween.tween(medalText, {alpha: 1}, 0.5, {

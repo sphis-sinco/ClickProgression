@@ -48,7 +48,9 @@ class PlayState extends FlxState
 		add(scoreText);
 
 		OtcClicked.add(OtcClickedEvent);
+		add(medals);
 		instance = this;
+
 	}
 
 	override public function update(elapsed:Float):Void
