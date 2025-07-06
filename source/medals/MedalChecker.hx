@@ -8,24 +8,47 @@ import flixel.util.FlxTimer;
 
 class MedalChecker
 {
-	public static var medalIDS:Map<String, Int> = ['cancer' => 85433, 'one hundo' => 85432];
-	public static var medalNames:Map<String, String> = ['cancer' => 'Cancer', 'one hundo' => 'One Hundo'];
+	public static var medalIDS:Map<String, Int> = [];
+	public static var medalUnlockVal:Map<String, Int> = [];
+	public static var medalNames:Array<String> = [];
+
+	public static function initMedals()
+	{
+		addMedal('Uno', 85437, 1);
+		addMedal('Dos', 85438, 2);
+		addMedal('Tres', 85439, 3);
+		addMedal('Cuatro', 85440, 4);
+		addMedal('Sinco', 85441, 5);
+
+		addMedal('Cancer', 85433, 69);
+		addMedal('One Hundo', 85432, 100);
+	}
+
+	public static function addMedal(name:String, id:Int, setval:Int)
+	{
+		medalIDS.set(name, id);
+		medalUnlockVal.set(name, setval);
+		medalNames.push(name);
+	}
 
 	public static function checkForMedals(isnew:Bool = true)
 	{
 		var thescore = PlayState.instance.Score;
 		var newval = isnew; // != null ? isnew : FlxG.save.data.medals.contains();
 
-		if (thescore >= 69)
-			unlockMedal('cancer', newval);
-		if (thescore >= 100)
-			unlockMedal('one hundo', newval);
+		var i = 0;
+		for (medal in medalNames)
+		{
+			if (thescore > medalUnlockVal.get(medal))
+				unlockMedal(i, newval);
+			i++;
+		}
 	}
 
-	public static function unlockMedal(medalKey:String, isnew:Bool = true)
+	public static function unlockMedal(medalIndex:Int, isnew:Bool = true)
 	{
-		var medalName:String = medalNames.get(medalKey);
-		var medalID:Int = medalIDS.get(medalKey);
+		var medalName:String = medalNames[medalIndex];
+		var medalID:Int = medalIDS.get(medalName);
 		trace('Unlocked medal: $medalName${#if NEWGROUNDS ' / $medalID' #else '' #end}');
 
 		#if NEWGROUNDS

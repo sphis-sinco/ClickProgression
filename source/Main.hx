@@ -1,5 +1,6 @@
 package;
 
+import medals.MedalChecker;
 import openfl.display.Sprite;
 
 class Main extends Sprite
@@ -12,6 +13,8 @@ class Main extends Sprite
 	{
 		FlxG.save.bind('ClickProgression', Application.COMPANY);
 		trace(FlxG.save.data);
+
+		MedalChecker.initMedals();
 
 		super();
 		addChild(new FlxGame(0, 0, PlayState));
