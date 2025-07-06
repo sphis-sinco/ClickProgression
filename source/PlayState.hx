@@ -13,7 +13,7 @@ class PlayState extends FlxState
 	// otc - object to click
 	var otc:FlxSprite;
 
-	public var OtcClicked:FlxSignal;
+	public var OtcClicked:FlxSignal = new FlxSignal();
 
 	public function OtcClickedEvent():Void
 	{
