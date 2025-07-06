@@ -90,7 +90,7 @@ class MedalChecker
 					FlxG.sound.play(FileManager.getAssetFile('ui/medals/NGFadeOut.${FileManager.SOUND_EXT}'));
 					FlxFlicker.flicker(medalText, 1, 0.05, false, false, flicker ->
 					{
-						PlayState.instance.remove(medalText);
+						PlayState.instance.medals.members.remove(medalText);
 						medalText.destroy();
 					});
 				});
