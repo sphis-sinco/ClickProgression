@@ -49,11 +49,6 @@ class MedalChecker
 			if (thescore >= medalUnlockVal.get(medal))
 			{
 				unlockMedal(i, newval);
-
-				if (medalUnlockVal.get(medal) == 9000)
-				{
-					FlxG.sound.play(FileManager.getAssetFile('ui/medals/over9000.${FileManager.SOUND_EXT}'));
-				}
 			}
 			i++;
 		}
@@ -72,6 +67,9 @@ class MedalChecker
 		medals ??= [];
 		if (!isnew || medals.contains(medalName))
 			return;
+
+		if (medalUnlockVal.get(medalName) == 9000)
+			FlxG.sound.play(FileManager.getAssetFile('ui/medals/over9000.${FileManager.SOUND_EXT}'));
 
 		trace('Unlocked medal: $medalName${#if NEWGROUNDS ' / $medalID' #else '' #end}');
 

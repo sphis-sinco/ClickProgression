@@ -46,16 +46,18 @@ class ShopState extends FlxState
 		doubleScoringBtn = new ShopButton(30, () ->
 		{
 			PlayState.instance.ScoreIncrement += PlayState.instance.ScoreIncrement;
-                        FlxG.save.data.scoreInc = PlayState.instance.ScoreIncrement;
-		}, 'Double scoring increment ($30)', [160, 20]);
+			FlxG.save.data.scoreInc = PlayState.instance.ScoreIncrement;
+                        FlxG.save.flush();
+		}, 'Double scoring increment', [160, 30]);
 		doubleScoringBtn.setPosition(20, 60);
 		add(doubleScoringBtn);
 
 		doubleMoneyBtn = new ShopButton(60, () ->
 		{
 			PlayState.instance.MoneyIncrement += PlayState.instance.MoneyIncrement;
-                        FlxG.save.data.moneyInc = PlayState.instance.MoneyIncrement;
-		}, 'Double money increment ($60)', [160, 20]);
+			FlxG.save.data.moneyInc = PlayState.instance.MoneyIncrement;
+                        FlxG.save.flush();
+		}, 'Double money increment', doubleScoringBtn.dimensions);
 		doubleMoneyBtn.setPosition(20 + doubleScoringBtn.width + 20, 60);
 		add(doubleMoneyBtn);
 
@@ -69,10 +71,10 @@ class ShopState extends FlxState
 		moneyText.text = 'Money: $' + '${FlxStringUtil.formatMoney(Money)}';
 		moneyText.screenCenter(X);
 
-                scoreIncText.text = 'Score increment: x${PlayState.instance.ScoreIncrement}';
-                scoreIncText.screenCenter(X);
+		scoreIncText.text = 'Score increment: ${PlayState.instance.ScoreIncrement}';
+		scoreIncText.screenCenter(X);
 
-                moneyIncText.text = 'Money increment: x${PlayState.instance.MoneyIncrement}';
-                moneyIncText.screenCenter(X);
+		moneyIncText.text = 'Money increment: ${PlayState.instance.MoneyIncrement}';
+		moneyIncText.screenCenter(X);
 	}
 }

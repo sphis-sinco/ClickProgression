@@ -1,4 +1,10 @@
 # r4
+## v29
+- Score increment texts don't have an "x" anymore
+- Fixed the sound effect for one of the new medals playing when the medal was already unlocked
+- The newgrounds session ID is set from the `FlxG.save.data` `sessionId`
+- Added money formatting to shop button price texts
+- Shop Buttons automatically add the price text
 ## v28
 - Added Money Increment text to the shop
 - Added Score Increment text to the shop
