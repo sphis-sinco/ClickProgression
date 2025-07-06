@@ -24,7 +24,7 @@ class MedalChecker
 
 		addMedal('One Hundo', 85432, 100);
 		addMedal('Korin', 85442, 190);
-		
+
 		addMedal('Super Kamehameha', 85443, 910);
 
 		// TODO: make this dub-only
@@ -47,7 +47,14 @@ class MedalChecker
 		for (medal in medalNames)
 		{
 			if (thescore > medalUnlockVal.get(medal))
+			{
 				unlockMedal(i, newval);
+
+				if (medalUnlockVal.get(medal) == 9000)
+				{
+					FlxG.sound.play(FileManager.getAssetFile('ui/medals/over9000.${FileManager.SOUND_EXT}'));
+				}
+			}
 			i++;
 		}
 	}
