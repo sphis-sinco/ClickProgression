@@ -1,4 +1,7 @@
 # r4
+## v30
+- There are now caps to Scoring and money increments (10 clicks)
+  - Clicks are only counted when you buy the item
 ## v29
 - Score increment texts don't have an "x" anymore
 - Fixed the sound effect for one of the new medals playing when the medal was already unlocked

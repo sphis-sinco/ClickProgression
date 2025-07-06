@@ -48,7 +48,7 @@ class ShopState extends FlxState
 			PlayState.instance.ScoreIncrement += PlayState.instance.ScoreIncrement;
 			FlxG.save.data.scoreInc = PlayState.instance.ScoreIncrement;
                         FlxG.save.flush();
-		}, 'Double scoring increment', [160, 30]);
+		}, 'Double scoring increment', [160, 30], 10);
 		doubleScoringBtn.setPosition(20, 60);
 		add(doubleScoringBtn);
 
@@ -57,7 +57,7 @@ class ShopState extends FlxState
 			PlayState.instance.MoneyIncrement += PlayState.instance.MoneyIncrement;
 			FlxG.save.data.moneyInc = PlayState.instance.MoneyIncrement;
                         FlxG.save.flush();
-		}, 'Double money increment', doubleScoringBtn.dimensions);
+		}, 'Double money increment', doubleScoringBtn.dimensions, doubleScoringBtn.maximumClicks);
 		doubleMoneyBtn.setPosition(20 + doubleScoringBtn.width + 20, 60);
 		add(doubleMoneyBtn);
 
