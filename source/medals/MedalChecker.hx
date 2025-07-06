@@ -1,6 +1,7 @@
 package medals;
 
 import flixel.text.FlxText;
+import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 
 class MedalChecker
@@ -9,7 +10,7 @@ class MedalChecker
 	{
 		switch (PlayState.instance.Score)
 		{
-                        // 2 is just for testing
+			// 2 is just for testing
 			case 2:
 				unlockMedal(OneHundoName, OneHundoID);
 
@@ -25,24 +26,40 @@ class MedalChecker
 
 		var medalText:FlxText = new FlxText();
 		medalText.text = 'Unlocked medal "$medalName"';
-                medalText.size = 32;
+		medalText.size = 32;
+                medalText.alpha = 0;
 		medalText.screenCenter(X);
 		medalText.y = FlxG.height - medalText.height - 32;
 
-		FlxG.sound.play(FileManager.getAssetFile('ui/medals/NGFadeIn.${FileManager.SOUND_EXT}'));
 		PlayState.instance.add(medalText);
 
-		FlxTween.tween(medalText, {alpha: 0.0}, 1, {
-			startDelay: 2,
+		var fadeOut:Void->Void = function()
+		{
+			FlxTween.tween(medalText, {alpha: 0.0}, 1, {
+				startDelay: 0.5,
+				onStart: tween ->
+				{
+					FlxG.sound.play(FileManager.getAssetFile('ui/medals/NGFadeOut.${FileManager.SOUND_EXT}'));
+				},
+				onComplete: tween ->
+				{
+					PlayState.instance.remove(medalText);
+					medalText.destroy();
+				},
+				ease: FlxEase.sineInOut
+			});
+		}
+
+		FlxTween.tween(medalText, {alpha: 1}, 0.5, {
 			onStart: tween ->
 			{
-				FlxG.sound.play(FileManager.getAssetFile('ui/medals/NGFadeOut.${FileManager.SOUND_EXT}'));
+				FlxG.sound.play(FileManager.getAssetFile('ui/medals/NGFadeIn.${FileManager.SOUND_EXT}'));
 			},
 			onComplete: tween ->
 			{
-				PlayState.instance.remove(medalText);
-				medalText.destroy();
-			}
+				fadeOut();
+			},
+			ease: FlxEase.sineInOut
 		});
 	}
 }
