@@ -6,7 +6,8 @@ class MedalChecker
                 switch(PlayState.instance.Score)
                 {
                         default:
-                                trace('No medal unlocked');
+                                // Prevent this from spamming the console
+                                // trace('No medal unlocked');
                 }
         }
 }
