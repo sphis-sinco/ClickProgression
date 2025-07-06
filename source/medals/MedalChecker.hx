@@ -8,8 +8,8 @@ import flixel.util.FlxTimer;
 
 class MedalChecker
 {
-	public static var medalIDS:Map<String, Int> = [];
-	public static var medalUnlockVal:Map<String, Int> = [];
+	public static var medalIDS:Map<String, Null<Int>> = [];
+	public static var medalUnlockVal:Map<String, Null<Int>> = [];
 	public static var medalNames:Array<String> = [];
 
 	public static function initMedals()
@@ -31,7 +31,7 @@ class MedalChecker
 		addMedal('Its over 9000!', 85444, 9000);
 	}
 
-	public static function addMedal(name:String, id:Int, setval:Int)
+	public static function addMedal(name:String, id:Null<Int>, setval:Null<Int>)
 	{
 		medalIDS.set(name, id);
 		medalUnlockVal.set(name, setval);

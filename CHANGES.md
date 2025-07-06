@@ -1,4 +1,6 @@
 # r4
+## v32
+- Added medal that currently doesn't have a method of unlocking (not on the newgrounds)
 ## v31
 - FileManager is now usable for getting assets without having to specify extensions because of the old system
 - Added assets for the Clear Save State
