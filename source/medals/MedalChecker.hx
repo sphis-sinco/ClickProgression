@@ -8,7 +8,7 @@ import flixel.util.FlxTimer;
 
 class MedalChecker
 {
-	static var medalIDS:Map<String, Int> = ['cancer' => 85433, 'one hundp' => 85432];
+	static var medalIDS:Map<String, Int> = ['cancer' => 85433, 'one hundo' => 85432];
 	static var medalNames:Map<String, String> = ['cancer' => 'Cancer', 'one hundo' => 'One Hundo'];
 
 	public static function checkForMedals()
