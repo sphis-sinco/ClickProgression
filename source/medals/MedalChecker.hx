@@ -4,6 +4,7 @@ import flixel.effects.FlxFlicker;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
+import flixel.util.FlxTimer;
 
 class MedalChecker
 {
@@ -41,11 +42,14 @@ class MedalChecker
 			},
 			onComplete: tween ->
 			{
-				FlxG.sound.play(FileManager.getAssetFile('ui/medals/NGFadeOut.${FileManager.SOUND_EXT}'));
-				FlxFlicker.flicker(medalText, 1, 0.05, false, false, flicker ->
+				FlxTimer.wait(0.5, () ->
 				{
-					PlayState.instance.remove(medalText);
-					medalText.destroy();
+					FlxG.sound.play(FileManager.getAssetFile('ui/medals/NGFadeOut.${FileManager.SOUND_EXT}'));
+					FlxFlicker.flicker(medalText, 1, 0.05, false, false, flicker ->
+					{
+						PlayState.instance.remove(medalText);
+						medalText.destroy();
+					});
 				});
 			},
 			ease: FlxEase.sineInOut
