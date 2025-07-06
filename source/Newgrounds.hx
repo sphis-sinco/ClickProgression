@@ -14,6 +14,15 @@ class Newgrounds
 		NG.core.setupEncryption(NewgroundsInfo.ENCRYPTION_KEY, AES_128, BASE_64);
 
 		NG.core.medals.loadList();
+
+		if (!NG.core.loggedIn)
+		{
+			NG.core.requestLogin(function(outcome:LoginOutcome):Void
+			{
+				if (outcome.match(SUCCESS))
+					trace("logged on");
+			});
+		}
 	}
 
 	public static function unlockMedal(id:Int)
