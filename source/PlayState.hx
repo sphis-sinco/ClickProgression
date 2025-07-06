@@ -22,7 +22,8 @@ class PlayState extends FlxState
 
 		scoreText.text = 'Score: $Score';
 		scoreText.screenCenter(X);
-		otc.scale.set(0.75, 0.75);
+		FlxTween.cancelTweensOf(otc);
+		otc.scale.set(0.9, 0.9);
 		FlxTween.tween(otc, {'scale.x': 1, 'scale.y': 1}, 0.25);
 	}
 
