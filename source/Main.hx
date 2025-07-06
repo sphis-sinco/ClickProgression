@@ -10,6 +10,9 @@ class Main extends Sprite
 
 	public function new():Void
 	{
+		FlxG.save.bind('ClickProgression', Application.COMPANY);
+		trace(FlxG.save.data);
+
 		super();
 		addChild(new FlxGame(0, 0, PlayState));
 

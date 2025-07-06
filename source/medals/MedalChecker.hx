@@ -8,26 +8,21 @@ import flixel.util.FlxTimer;
 
 class MedalChecker
 {
-	static var medalIDS:Map<String, Int> = ['cancer' => 85433, 'one hundo' => 85432];
-	static var medalNames:Map<String, String> = ['cancer' => 'Cancer', 'one hundo' => 'One Hundo'];
+	public static var medalIDS:Map<String, Int> = ['cancer' => 85433, 'one hundo' => 85432];
+	public static var medalNames:Map<String, String> = ['cancer' => 'Cancer', 'one hundo' => 'One Hundo'];
 
-	public static function checkForMedals()
+	public static function checkForMedals(isnew:Bool = true)
 	{
-		switch (PlayState.instance.Score)
-		{
-			case 69:
-				unlockMedal('cancer');
+		var thescore = PlayState.instance.Score;
+		var newval = isnew; // != null ? isnew : FlxG.save.data.medals.contains();
 
-			case 100:
-				unlockMedal('one hundo');
-
-			default:
-				// Prevent this from spamming the console
-				// trace('No medal unlocked');
-		}
+		if (thescore >= 69)
+			unlockMedal('cancer', newval);
+		if (thescore >= 100)
+			unlockMedal('one hundo', newval);
 	}
 
-	public static function unlockMedal(medalKey:String)
+	public static function unlockMedal(medalKey:String, isnew:Bool = true)
 	{
 		var medalName:String = medalNames.get(medalKey);
 		var medalID:Int = medalIDS.get(medalKey);
@@ -37,13 +32,16 @@ class MedalChecker
 		NGio.unlockMedal(medalID);
 		#end
 
+		var medals:Array<String> = FlxG.save.data.medals;
+		medals ??= [];
+		if (!isnew || medals.contains(medalName))
+			return;
+		medals.push(medalName);
+		FlxG.save.data.medals = medals;
+		FlxG.save.flush();
+
 		var medalText:FlxText = new FlxText();
 		medalText.text = 'Unlocked medal "$medalName"';
-
-		#if NEWGROUNDS
-		var medal = io.newgrounds.NG.core.medals.getById(medalID);
-		medalText.text = 'Unlocked medal "${medal.name}" (${medal.difficultyName}) for ${medal.value} points';
-		#end
 
 		medalText.size = 32;
 		medalText.alpha = 1;
@@ -77,10 +75,4 @@ class MedalChecker
 			ease: FlxEase.sineInOut
 		});
 	}
-}
-
-enum abstract MedalNames(String)
-{
-	var CancerName = 'Cancer';
-	var OneHundoName = 'One Hundo';
 }

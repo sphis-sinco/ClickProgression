@@ -24,10 +24,12 @@ class PlayState extends FlxState
 	public function OtcClickedEvent():Void
 	{
 		Score += Constants.DefaultScoreIncrement;
+		FlxG.save.data.score = Score;
+		FlxG.save.flush();
 
 		scoreText.text = 'Score: $Score';
 		scoreText.screenCenter(X);
-		
+
 		FlxTween.cancelTweensOf(otc);
 		otc.scale.set(0.9, 0.9);
 		FlxTween.tween(otc, {'scale.x': 1, 'scale.y': 1}, 0.25);
@@ -44,13 +46,21 @@ class PlayState extends FlxState
 		add(otc);
 
 		scoreText = new FlxText(0, 10, 0, 'Score: 0', 16);
-		scoreText.screenCenter(X);
 		add(scoreText);
 
 		OtcClicked.add(OtcClickedEvent);
 		add(medals);
+
 		instance = this;
 
+		if (FlxG.save.data.score != null)
+		{
+			Score = FlxG.save.data.score;
+			MedalChecker.checkForMedals();
+		}
+
+		scoreText.text = 'Score: $Score';
+		scoreText.screenCenter(X);
 	}
 
 	override public function update(elapsed:Float):Void
