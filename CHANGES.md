@@ -1,4 +1,10 @@
 # r4
+## v31
+- FileManager is now usable for getting assets without having to specify extensions because of the old system
+- Added assets for the Clear Save State
+- (Windows only?) Fixed newgrounds crash when trying to get the scoreboard
+- Added Clear Save state
+- Added save clear button
 ## v30
 - There are now caps to Scoring and money increments (10 clicks)
   - Clicks are only counted when you buy the item

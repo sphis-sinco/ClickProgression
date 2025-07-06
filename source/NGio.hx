@@ -150,6 +150,8 @@ class NGio
 
 	function onNGScoresFetch():Void
 	{
+		return;
+
 		scoreboardsLoaded = true;
 
 		ngScoresLoaded.dispatch();

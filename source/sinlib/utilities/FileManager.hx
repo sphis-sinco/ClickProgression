@@ -247,7 +247,7 @@ class FileManager {
 	 * @return String
 	 */
 	public static function getDataFile(file:String, ?PATH_TYPE:PathTypes = DEFAULT, ?posinfo:PosInfos):String
-		return getAssetFile('data/$file', PATH_TYPE, posinfo);
+		return getAssetFile('$file', PATH_TYPE, posinfo);
 
 	/**
 	 * Returns `assets/images/$file.png`
@@ -256,7 +256,7 @@ class FileManager {
 	 * @return String
 	 */
 	public static function getImageFile(file:String, ?PATH_TYPE:PathTypes = DEFAULT, ?posinfo:PosInfos):String
-		return getAssetFile('images/$file.png', PATH_TYPE, posinfo);
+		return getAssetFile('$file.png', PATH_TYPE, posinfo);
 
 	/**
 	 * Returns `assets/$file.$SOUND_EXT`

@@ -69,7 +69,7 @@ class MedalChecker
 			return;
 
 		if (medalUnlockVal.get(medalName) == 9000)
-			FlxG.sound.play(FileManager.getAssetFile('ui/medals/over9000.${FileManager.SOUND_EXT}'));
+			FlxG.sound.play(FileManager.getSoundFile('ui/medals/over9000'));
 
 		trace('Unlocked medal: $medalName${#if NEWGROUNDS ' / $medalID' #else '' #end}');
 
@@ -95,13 +95,13 @@ class MedalChecker
 		FlxTween.tween(medalText, {alpha: 1}, 0.5, {
 			onStart: tween ->
 			{
-				FlxG.sound.play(FileManager.getAssetFile('ui/medals/NGFadeIn.${FileManager.SOUND_EXT}'));
+				FlxG.sound.play(FileManager.getSoundFile('ui/medals/NGFadeIn'));
 			},
 			onComplete: tween ->
 			{
 				FlxTimer.wait(0.5, () ->
 				{
-					FlxG.sound.play(FileManager.getAssetFile('ui/medals/NGFadeOut.${FileManager.SOUND_EXT}'));
+					FlxG.sound.play(FileManager.getSoundFile('ui/medals/NGFadeOut'));
 					FlxFlicker.flicker(medalText, 1, 0.05, false, false, flicker ->
 					{
 						PlayState.instance.medals.members.remove(medalText);

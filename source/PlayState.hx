@@ -24,6 +24,7 @@ class PlayState extends FlxState
 	var scoreText:FlxText;
 	var moneyText:FlxText;
 	var shopButton:FlxButton;
+	var clearSaveButton:FlxButton;
 
 	// otc - object to click
 	var otc:FlxSprite;
@@ -69,6 +70,12 @@ class PlayState extends FlxState
 		});
 		shopButton.screenCenter(X);
 		add(shopButton);
+
+		clearSaveButton = new FlxButton(0, 80, 'Clear save', () -> {
+			FlxG.switchState(ClearSaveState.new);
+		});
+		clearSaveButton.screenCenter(X);
+		add(clearSaveButton);
 
 		OtcClicked.add(OtcClickedEvent);
 		add(medals);

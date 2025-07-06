@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="heart.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Heart0000" x="4" y="4" width="143" height="137" frameX="-7" frameY="-4" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart0001" x="4" y="4" width="143" height="137" frameX="-7" frameY="-4" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart0002" x="4" y="4" width="143" height="137" frameX="-7" frameY="-4" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart0003" x="155" y="4" width="142" height="121" frameX="-6" frameY="-18" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart0004" x="155" y="4" width="142" height="121" frameX="-6" frameY="-18" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart0005" x="155" y="4" width="142" height="121" frameX="-6" frameY="-18" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart0006" x="305" y="4" width="152" height="138" frameX="0" frameY="0" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart0007" x="305" y="4" width="152" height="138" frameX="0" frameY="0" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart0008" x="305" y="4" width="152" height="138" frameX="0" frameY="0" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart0009" x="4" y="150" width="144" height="121" frameX="-5" frameY="-17" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart0010" x="4" y="150" width="144" height="121" frameX="-5" frameY="-17" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart0011" x="4" y="150" width="144" height="121" frameX="-5" frameY="-17" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart selected0000" x="156" y="150" width="143" height="137" frameX="-7" frameY="-4" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart selected0001" x="156" y="150" width="143" height="137" frameX="-7" frameY="-4" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart selected0002" x="156" y="150" width="143" height="137" frameX="-7" frameY="-4" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart selected0003" x="307" y="150" width="142" height="121" frameX="-6" frameY="-18" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart selected0004" x="307" y="150" width="142" height="121" frameX="-6" frameY="-18" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart selected0005" x="307" y="150" width="142" height="121" frameX="-6" frameY="-18" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart selected0006" x="4" y="295" width="152" height="138" frameX="0" frameY="0" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart selected0007" x="4" y="295" width="152" height="138" frameX="0" frameY="0" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart selected0008" x="4" y="295" width="152" height="138" frameX="0" frameY="0" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart selected0009" x="164" y="295" width="144" height="121" frameX="-5" frameY="-17" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart selected0010" x="164" y="295" width="144" height="121" frameX="-5" frameY="-17" frameWidth="152" frameHeight="141"/>
+	<SubTexture name="Heart selected0011" x="164" y="295" width="144" height="121" frameX="-5" frameY="-17" frameWidth="152" frameHeight="141"/>
+</TextureAtlas>
