@@ -3,8 +3,10 @@ package;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
+import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import flixel.util.FlxSignal;
+import flixel.util.FlxStringUtil;
 import medals.MedalChecker;
 
 class PlayState extends FlxState
@@ -12,9 +14,16 @@ class PlayState extends FlxState
 	public static var instance:PlayState;
 
 	public var Score:Int = 0;
+	public var Money:Float = 0;
+
+	public var ScoreIncrement:Null<Int> = 0;
+	public var MoneyIncrement:Null<Float> = 0;
+
 	public var medals:FlxTypedGroup<FlxText> = new FlxTypedGroup<FlxText>();
 
 	var scoreText:FlxText;
+	var moneyText:FlxText;
+	var shopButton:FlxButton;
 
 	// otc - object to click
 	var otc:FlxSprite;
@@ -23,8 +32,11 @@ class PlayState extends FlxState
 
 	public function OtcClickedEvent():Void
 	{
-		Score += Constants.DefaultScoreIncrement;
+		Score += ScoreIncrement;
+		Money += MoneyIncrement;
+
 		FlxG.save.data.score = Score;
+		FlxG.save.data.money = Money;
 		FlxG.save.flush();
 
 		scoreText.text = 'Score: $Score';
@@ -48,6 +60,16 @@ class PlayState extends FlxState
 		scoreText = new FlxText(0, 10, 0, 'Score: 0', 16);
 		add(scoreText);
 
+		moneyText = new FlxText(0, 30, 0, 'Money: $0', 16);
+		add(moneyText);
+
+		shopButton = new FlxButton(0, 60, 'Shop', () ->
+		{
+			FlxG.switchState(ShopState.new);
+		});
+		shopButton.screenCenter(X);
+		add(shopButton);
+
 		OtcClicked.add(OtcClickedEvent);
 		add(medals);
 
@@ -58,6 +80,17 @@ class PlayState extends FlxState
 			Score = FlxG.save.data.score;
 			MedalChecker.checkForMedals();
 		}
+
+		if (FlxG.save.data.money != null)
+		{
+			Money = FlxG.save.data.money;
+		}
+
+		ScoreIncrement = FlxG.save.data.scoreInc;
+		ScoreIncrement ??= Constants.DefaultScoreIncrement;
+
+		MoneyIncrement = FlxG.save.data.moneyInc;
+		MoneyIncrement ??= Constants.DefaultMoneyIncrement;
 
 		scoreText.text = 'Score: $Score';
 		scoreText.screenCenter(X);
@@ -70,5 +103,8 @@ class PlayState extends FlxState
 		{
 			OtcClicked.dispatch();
 		}
+
+		moneyText.text = 'Money: $' + '${FlxStringUtil.formatMoney(Money)}';
+		moneyText.screenCenter(X);
 	}
 }

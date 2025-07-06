@@ -46,7 +46,7 @@ class MedalChecker
 		var i = 0;
 		for (medal in medalNames)
 		{
-			if (thescore > medalUnlockVal.get(medal))
+			if (thescore >= medalUnlockVal.get(medal))
 			{
 				unlockMedal(i, newval);
 
@@ -63,7 +63,6 @@ class MedalChecker
 	{
 		var medalName:String = medalNames[medalIndex];
 		var medalID:Int = medalIDS.get(medalName);
-		trace('Unlocked medal: $medalName${#if NEWGROUNDS ' / $medalID' #else '' #end}');
 
 		#if NEWGROUNDS
 		NGio.unlockMedal(medalID);
@@ -73,6 +72,9 @@ class MedalChecker
 		medals ??= [];
 		if (!isnew || medals.contains(medalName))
 			return;
+
+		trace('Unlocked medal: $medalName${#if NEWGROUNDS ' / $medalID' #else '' #end}');
+
 		medals.push(medalName);
 		FlxG.save.data.medals = medals;
 		FlxG.save.flush();
