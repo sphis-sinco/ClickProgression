@@ -21,7 +21,11 @@ class MedalChecker
 		addMedal('Sinco', 85441, 5);
 
 		addMedal('Cancer', 85433, 69);
+
 		addMedal('One Hundo', 85432, 100);
+		addMedal('Korin', 85442, 190);
+		
+		addMedal('Super Kamehameha', 85443, 910);
 	}
 
 	public static function addMedal(name:String, id:Int, setval:Int)

@@ -1,3 +1,3 @@
-# r3
-## v23
-- Fixed medals still going up when they should go down
+# r4
+## v24
+- Added 2 new medals in reference to dragon ball
