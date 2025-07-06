@@ -32,10 +32,8 @@ class MedalChecker
 		var medalName:String = medalNames.get(medalKey);
 		var medalID:Int = medalIDS.get(medalKey);
 
-		#if newgrounds
-		Newgrounds.unlockMedal(medalID);
-		#end
-
+		NGio.unlockMedal(medalID);
+		
 		var medalText:FlxText = new FlxText();
 		medalText.text = 'Unlocked medal "$medalName"';
 		medalText.size = 32;

@@ -4,7 +4,7 @@ package;
 
 class NewgroundsInfo {
         public static var APP_ID:String = '';
-        public static var SESSION_ID:String = '';
-        public static var BACKUP_SESSION_ID:String = '';
+        public static var SESSION_ID:String = null;
+        public static var BACKUP_SESSION_ID:String = null;
         public static var ENCRYPTION_KEY:String = '';
 }
