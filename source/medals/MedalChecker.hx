@@ -26,6 +26,9 @@ class MedalChecker
 		addMedal('Korin', 85442, 190);
 		
 		addMedal('Super Kamehameha', 85443, 910);
+
+		// TODO: make this dub-only
+		addMedal('Its over 9000!', 85444, 9000);
 	}
 
 	public static function addMedal(name:String, id:Int, setval:Int)
