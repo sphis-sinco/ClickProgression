@@ -1,6 +1,7 @@
 package;
 
 import flixel.text.FlxText;
+import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxSignal;
 
@@ -18,8 +19,11 @@ class PlayState extends FlxState
 	public function OtcClickedEvent():Void
 	{
 		Score += Constants.DefaultScoreIncrement;
+
 		scoreText.text = 'Score: $Score';
 		scoreText.screenCenter(X);
+		otc.scale.set(0.75, 0.75);
+		FlxTween.tween(otc, {'scale.x': 1, 'scale.y': 1}, 0.25);
 	}
 
 	override public function create():Void
