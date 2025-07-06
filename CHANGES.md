@@ -1,8 +1,13 @@
 # r4
+## v28
+- Added Money Increment text to the shop
+- Added Score Increment text to the shop
+- Added "Double money increment" button, costs $60
+- Fixed Scoring increment doubling not being saved
 ## v27
 - Added ShopButton class to make it easier for shop buttons to be added
 - Added `flixel-addons` library
-- Added Double scoring increment button
+- Added "Double scoring increment" button, costs $30
 - Fixed spammy unlocked medal messages
 - When unlocking medals, it now checks for if the score is above or equal to the required score
 - Added Shop menu
