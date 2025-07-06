@@ -1,5 +1,6 @@
 package medals;
 
+import flixel.effects.FlxFlicker;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -27,28 +28,11 @@ class MedalChecker
 		var medalText:FlxText = new FlxText();
 		medalText.text = 'Unlocked medal "$medalName"';
 		medalText.size = 32;
-                medalText.alpha = 0;
+		medalText.alpha = 0;
 		medalText.screenCenter(X);
 		medalText.y = FlxG.height - medalText.height - 32;
 
 		PlayState.instance.add(medalText);
-
-		var fadeOut:Void->Void = function()
-		{
-			FlxTween.tween(medalText, {alpha: 0.0}, 1, {
-				startDelay: 0.5,
-				onStart: tween ->
-				{
-					FlxG.sound.play(FileManager.getAssetFile('ui/medals/NGFadeOut.${FileManager.SOUND_EXT}'));
-				},
-				onComplete: tween ->
-				{
-					PlayState.instance.remove(medalText);
-					medalText.destroy();
-				},
-				ease: FlxEase.sineInOut
-			});
-		}
 
 		FlxTween.tween(medalText, {alpha: 1}, 0.5, {
 			onStart: tween ->
@@ -57,7 +41,12 @@ class MedalChecker
 			},
 			onComplete: tween ->
 			{
-				fadeOut();
+				FlxG.sound.play(FileManager.getAssetFile('ui/medals/NGFadeOut.${FileManager.SOUND_EXT}'));
+				FlxFlicker.flicker(medalText, 1, 0.05, false, false, flicker ->
+				{
+					PlayState.instance.remove(medalText);
+					medalText.destroy();
+				});
 			},
 			ease: FlxEase.sineInOut
 		});
